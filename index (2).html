@@ -1,0 +1,3615 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<link rel="manifest" href="/manifest.json">
+
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/icons/apple-touch-icon.png"
+>
+
+<meta name="theme-color" content="#0f172a">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta
+  name="apple-mobile-web-app-status-bar-style"
+  content="default"
+>
+
+<meta
+  name="apple-mobile-web-app-title"
+  content="Financeiro PRO"
+>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<base target="_top">
+
+<style>
+
+/* ==========================================
+   FINANCEIRO PRO
+   IDENTIDADE VISUAL
+========================================== */
+
+:root {
+  --azul: #1F2937;
+  --azul-claro: #374151;
+
+  --fundo: #F5F6F8;
+  --card: #FFFFFF;
+
+  --texto: #202124;
+  --texto-secundario: #6B7280;
+
+  --borda: #E5E7EB;
+
+  --verde: #188038;
+  --verde-bg: #EAF5EE;
+
+  --vermelho: #D93025;
+  --vermelho-bg: #FCECEC;
+
+  --laranja: #E37400;
+  --laranja-bg: #FFF3E6;
+
+  --azul-acao: #2563EB;
+
+  --sombra:
+    0 8px 30px rgba(31, 41, 55, .08);
+}
+
+
+/* ==========================================
+   RESET
+========================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background: var(--fundo);
+  color: var(--texto);
+
+  min-height: 100vh;
+
+  padding-bottom:
+    calc(30px + env(safe-area-inset-bottom));
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+
+/* ==========================================
+   CABEÇALHO
+========================================== */
+
+.header {
+  background: var(--azul);
+  color: white;
+
+  padding:
+    calc(22px + env(safe-area-inset-top))
+    20px
+    25px;
+}
+
+.headerConteudo {
+  width: 100%;
+  max-width: 520px;
+  margin: auto;
+}
+
+.logoLinha {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoIcone {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,.10);
+
+  border: 1px solid rgba(255,255,255,.12);
+
+  border-radius: 13px;
+
+  font-size: 23px;
+}
+
+.header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -.3px;
+}
+
+.header p {
+  font-size: 13px;
+  opacity: .72;
+  margin-top: 3px;
+}
+
+
+/* ==========================================
+   CONTEÚDO
+========================================== */
+
+.container {
+  width: 100%;
+  max-width: 520px;
+
+  margin: auto;
+
+  padding: 18px;
+}
+
+
+/* ==========================================
+   CARD PRINCIPAL
+========================================== */
+
+.card {
+  background: var(--card);
+
+  border: 1px solid var(--borda);
+  border-radius: 18px;
+
+  box-shadow: var(--sombra);
+
+  padding: 20px;
+}
+
+.tituloSecao {
+  font-size: 13px;
+  font-weight: 700;
+
+  color: var(--texto-secundario);
+
+  text-transform: uppercase;
+  letter-spacing: .6px;
+
+  margin-bottom: 12px;
+}
+
+
+/* ==========================================
+   FORMAS DE ENTRADA
+========================================== */
+
+.modosEntrada {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 8px;
+
+  margin-bottom: 24px;
+}
+
+.btnEntrada {
+  position: relative;
+
+  border: 1px solid var(--borda);
+
+  background: white;
+
+  border-radius: 12px;
+
+  min-height: 72px;
+
+  padding: 10px 6px;
+
+  cursor: pointer;
+
+  color: var(--texto-secundario);
+
+  transition: .18s ease;
+}
+
+.btnEntrada .icone {
+  display: block;
+
+  font-size: 21px;
+
+  margin-bottom: 5px;
+}
+
+.btnEntrada .nome {
+  display: block;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.btnEntrada.ativo {
+  border-color: var(--azul);
+  background: #F3F4F6;
+  color: var(--azul);
+}
+
+.btnEntrada.bloqueado {
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+
+  top: 5px;
+  right: 5px;
+
+  background: var(--azul);
+
+  color: white;
+
+  border-radius: 20px;
+
+  padding: 2px 5px;
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: .3px;
+
+  text-transform: uppercase;
+}
+
+
+/* ==========================================
+   TIPO DE LANÇAMENTO
+========================================== */
+
+.tipos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 8px;
+
+  margin-bottom: 22px;
+}
+
+.btnTipo {
+  border: 1px solid var(--borda);
+
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 12px 5px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  transition: .18s ease;
+}
+
+.btnTipo span {
+  display: block;
+
+  font-size: 20px;
+
+  margin-bottom: 5px;
+}
+
+
+/* DESPESA */
+
+#btnDespesa {
+  color: var(--vermelho);
+}
+
+#btnDespesa.ativo {
+  background: var(--vermelho-bg);
+  border-color: var(--vermelho);
+}
+
+
+/* RECEITA */
+
+#btnReceita {
+  color: var(--verde);
+}
+
+#btnReceita.ativo {
+  background: var(--verde-bg);
+  border-color: var(--verde);
+}
+
+
+/* DÍVIDA */
+
+#btnDivida {
+  color: var(--laranja);
+}
+
+#btnDivida.ativo {
+  background: var(--laranja-bg);
+  border-color: var(--laranja);
+}
+
+
+/* ==========================================
+   CAMPOS
+========================================== */
+
+.campo {
+  margin-top: 17px;
+}
+
+label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #4B5563;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+input,
+select {
+  width: 100%;
+
+  height: 52px;
+
+  border: 1px solid var(--borda);
+
+  border-radius: 11px;
+
+  background: white;
+
+  color: var(--texto);
+
+  padding: 0 14px;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition:
+    border .18s ease,
+    box-shadow .18s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #9CA3AF;
+
+  box-shadow:
+    0 0 0 3px rgba(31, 41, 55, .06);
+}
+
+input[readonly] {
+  background: #F9FAFB;
+  color: #4B5563;
+}
+
+
+/* ==========================================
+   VALOR
+========================================== */
+
+.valorContainer {
+  position: relative;
+}
+
+.valorPrefixo {
+  position: absolute;
+
+  left: 14px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  font-size: 17px;
+  font-weight: 700;
+
+  color: var(--texto-secundario);
+
+  pointer-events: none;
+}
+
+#valor {
+  height: 62px;
+
+  padding-left: 48px;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  letter-spacing: -.4px;
+}
+
+
+/* ==========================================
+   DÍVIDAS
+========================================== */
+
+#areaDivida {
+  display: none;
+}
+
+.infoDivida {
+  display: none;
+
+  margin-top: 14px;
+
+  padding: 16px;
+
+  background: var(--laranja-bg);
+
+  border: 1px solid #F5D5B5;
+
+  border-radius: 13px;
+}
+
+.infoSaldo {
+  padding-bottom: 13px;
+
+  margin-bottom: 13px;
+
+  border-bottom: 1px solid rgba(227,116,0,.15);
+}
+
+.infoTitulo {
+  font-size: 11px;
+  font-weight: 700;
+
+  color: #8A5A24;
+
+  text-transform: uppercase;
+  letter-spacing: .4px;
+
+  margin-bottom: 4px;
+}
+
+.infoValor {
+  font-size: 22px;
+  font-weight: 700;
+
+  color: var(--laranja);
+}
+
+.infoGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 13px;
+}
+
+.infoItemValor {
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #4B5563;
+}
+
+.aviso {
+  margin-top: 13px;
+
+  padding-top: 12px;
+
+  border-top:
+    1px solid rgba(227,116,0,.15);
+
+  font-size: 12px;
+
+  color: #8A5A24;
+
+  line-height: 1.4;
+}
+
+
+/* ==========================================
+   BOTÃO SALVAR
+========================================== */
+
+#btnSalvar {
+  width: 100%;
+
+  min-height: 55px;
+
+  margin-top: 24px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: var(--azul);
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform .12s ease,
+    opacity .12s ease,
+    background .12s ease;
+}
+
+#btnSalvar:active {
+  transform: scale(.99);
+}
+
+#btnSalvar:hover {
+  background: var(--azul-claro);
+}
+
+#btnSalvar:disabled {
+  opacity: .55;
+  cursor: default;
+}
+
+
+/* ==========================================
+   TOAST
+========================================== */
+
+.toast {
+  position: fixed;
+
+  left: 50%;
+  bottom:
+    calc(22px + env(safe-area-inset-bottom));
+
+  transform:
+    translate(-50%, 120px);
+
+  width:
+    calc(100% - 36px);
+
+  max-width: 480px;
+
+  padding: 14px 16px;
+
+  background: var(--azul);
+
+  color: white;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.18);
+
+  font-size: 13px;
+  font-weight: 600;
+
+  line-height: 1.4;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: .25s ease;
+
+  z-index: 1000;
+}
+
+.toast.mostrar {
+  transform:
+    translate(-50%, 0);
+
+  opacity: 1;
+}
+
+.toast.sucesso {
+  background: var(--verde);
+}
+
+.toast.erro {
+  background: var(--vermelho);
+}
+
+
+/* ==========================================
+   MODAL
+========================================== */
+
+.modalFundo {
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    rgba(17, 24, 39, .55);
+
+  padding: 20px;
+
+  align-items: center;
+  justify-content: center;
+
+  z-index: 900;
+}
+
+.modalFundo.aberto {
+  display: flex;
+}
+
+.modal {
+  width: 100%;
+  max-width: 390px;
+
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 22px;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.22);
+}
+
+.modalIcone {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--laranja-bg);
+
+  border-radius: 50%;
+
+  font-size: 23px;
+
+  margin-bottom: 15px;
+}
+
+.modal h3 {
+  font-size: 18px;
+
+  margin-bottom: 7px;
+}
+
+.modalTexto {
+  font-size: 13px;
+
+  color: var(--texto-secundario);
+
+  line-height: 1.5;
+}
+
+.modalResumo {
+  margin-top: 16px;
+
+  background: #F9FAFB;
+
+  border: 1px solid var(--borda);
+
+  border-radius: 11px;
+
+  padding: 14px;
+}
+
+.modalResumoNome {
+  font-size: 13px;
+  font-weight: 700;
+
+  margin-bottom: 4px;
+}
+
+.modalResumoValor {
+  font-size: 22px;
+  font-weight: 700;
+
+  color: var(--laranja);
+}
+
+.modalResumoParcela {
+  margin-top: 3px;
+
+  font-size: 12px;
+
+  color: var(--texto-secundario);
+}
+
+.modalBotoes {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 9px;
+
+  margin-top: 18px;
+}
+
+.modalBotoes button {
+  min-height: 46px;
+
+  border-radius: 10px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.btnCancelar {
+  border: 1px solid var(--borda);
+
+  background: white;
+
+  color: #4B5563;
+}
+
+.btnConfirmar {
+  border: none;
+
+  background: var(--laranja);
+
+  color: white;
+}
+
+
+/* ==========================================
+   RESPONSIVO
+========================================== */
+
+@media (max-width: 380px) {
+
+  .container {
+    padding: 13px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .btnTipo {
+    font-size: 12px;
+  }
+
+  .header h1 {
+    font-size: 20px;
+  }
+
+}
+
+
+/* VOZ + GEMINI */
+.vozAcoes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.vozAcoes button{min-height:44px;border-radius:10px;font-weight:700;cursor:pointer}
+#btnGravarVoz{border:none;background:var(--vermelho);color:white}
+#btnPararVoz{border:1px solid var(--borda);background:white;color:var(--texto)}
+#btnPararVoz:disabled,#btnGravarVoz:disabled{opacity:.55;cursor:default}
+
+  /* ==========================================
+   NAVEGAÇÃO PRINCIPAL
+========================================== */
+
+.navPrincipal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+
+  margin-bottom: 14px;
+  padding: 5px;
+
+  background: #E9EBEF;
+  border-radius: 14px;
+}
+
+.navBotao {
+  min-height: 46px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: transparent;
+  color: var(--texto-secundario);
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background .18s ease,
+    color .18s ease,
+    box-shadow .18s ease;
+}
+
+.navBotao span {
+  margin-right: 5px;
+}
+
+.navBotao.ativo {
+  background: white;
+  color: var(--azul);
+
+  box-shadow:
+    0 2px 8px rgba(31, 41, 55, .10);
+}
+  /* ==========================================
+   DASHBOARD
+========================================== */
+
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.dashboardCard {
+  padding: 15px;
+
+  background: #F9FAFB;
+  border: 1px solid var(--borda);
+  border-radius: 13px;
+
+  min-width: 0;
+}
+
+.dashboardCard.destaque {
+  grid-column: 1 / -1;
+
+  background: var(--azul);
+  border-color: var(--azul);
+
+  padding: 18px;
+}
+
+.dashboardLabel {
+  margin-bottom: 7px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  color: var(--texto-secundario);
+
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+
+.dashboardValor {
+  font-size: 19px;
+  font-weight: 700;
+
+  color: var(--texto);
+
+  white-space: nowrap;
+}
+
+.dashboardValor.receita {
+  color: var(--verde);
+}
+
+.dashboardValor.despesa {
+  color: var(--vermelho);
+}
+
+.dashboardCard.destaque .dashboardLabel {
+  color: rgba(255,255,255,.70);
+}
+
+.dashboardCard.destaque .dashboardValor {
+  color: white;
+  font-size: 26px;
+}
+  .dashboardPeriodo {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 8px;
+
+  margin: 12px 0 18px;
+  padding: 8px;
+
+  background: #F9FAFB;
+  border: 1px solid var(--borda);
+  border-radius: 13px;
+}
+
+.btnPeriodo {
+  width: 44px;
+  height: 44px;
+
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+
+  background: white;
+  color: var(--azul);
+
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.periodoAtual {
+  text-align: center;
+  font-weight: 700;
+}
+
+#dashMes {
+  font-size: 15px;
+}
+
+#dashAno {
+  display: block;
+  margin-top: 2px;
+
+  font-size: 11px;
+  color: var(--texto-secundario);
+}
+  /* ==========================================
+   LOADING DASHBOARD
+========================================== */
+
+.dashboardLoading {
+
+  opacity: .45;
+
+  pointer-events: none;
+
+  transition: opacity .20s ease;
+
+}
+
+.loadingTexto {
+
+  display: none;
+
+  text-align: center;
+
+  margin: 12px 0;
+
+  font-size: 13px;
+
+  color: var(--texto-secundario);
+
+}
+
+.loadingTexto.ativo{
+
+  display:block;
+
+}/* ==========================================
+   DASHBOARD - GRÁFICOS
+========================================== */
+
+.dashboardCharts{
+
+    margin-top:20px;
+
+}
+
+.chartCard{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+    margin-bottom:18px;
+
+}
+
+.chartCard h3{
+
+    margin:0 0 15px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+.chartCard canvas{
+
+    width:100%!important;
+
+    height:260px!important;
+
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ========================================
+     CABEÇALHO
+========================================= -->
+
+<header class="header">
+
+  <div class="headerConteudo">
+
+    <div class="logoLinha">
+
+      <div class="logoIcone">
+        💰
+      </div>
+
+      <div>
+
+        <h1>Financeiro PRO</h1>
+
+        <p>
+          Controle financeiro
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- ========================================
+     APP
+========================================= -->
+
+<main class="container">
+  <!-- ========================================
+     NAVEGAÇÃO PRINCIPAL
+========================================= -->
+
+<div class="navPrincipal">
+
+  <button
+    type="button"
+    id="navLancamentos"
+    class="navBotao ativo"
+    onclick="abrirTela('lancamentos')">
+
+    <span>✏️</span>
+    Lançar
+
+  </button>
+
+  <button
+    type="button"
+    id="navDashboard"
+    class="navBotao"
+    onclick="abrirTela('dashboard')">
+
+    <span>📊</span>
+    Dashboard
+
+  </button>
+
+</div>
+
+ <div class="card" id="telaLancamentos">
+
+
+    <!-- ====================================
+         FORMA DE ENTRADA
+    ===================================== -->
+
+    <div class="tituloSecao">
+      Como deseja lançar?
+    </div>
+
+
+    <div class="modosEntrada">
+
+      <button
+        type="button"
+        class="btnEntrada ativo"
+        id="modoManual"
+        onclick="selecionarEntrada('manual')">
+
+        <span class="icone">⌨️</span>
+
+        <span class="nome">
+          Manual
+        </span>
+
+      </button>
+
+
+      <button
+  type="button"
+  class="btnEntrada"
+  id="modoVoz"
+  onclick="selecionarEntrada('voz')">
+
+  <span class="icone">🎙️</span>
+
+  <span
+    class="nome"
+    id="textoModoVoz">
+    Voz
+  </span>
+
+</button>
+
+
+      <button
+        type="button"
+        class="btnEntrada bloqueado"
+        id="modoFoto"
+        onclick="selecionarEntrada('foto')">
+
+        <span class="badge">
+          Em breve
+        </span>
+
+        <span class="icone">📷</span>
+
+        <span class="nome">
+          Foto
+        </span>
+
+      </button>
+
+    </div>
+
+    <!-- ====================================
+         RECONHECIMENTO DE VOZ
+    ===================================== -->
+
+    <div
+      id="areaVoz"
+      style="
+        display: none;
+        margin-bottom: 24px;
+        padding: 14px;
+        background: #F9FAFB;
+        border: 1px solid var(--borda);
+        border-radius: 12px;
+      ">
+
+      <div
+        id="statusVoz"
+        style="
+          font-size: 13px;
+          font-weight: 700;
+          color: var(--texto);
+          margin-bottom: 5px;
+        ">
+        🎙️ Ouvindo...
+      </div>
+
+      <div
+        id="transcricaoVoz"
+        style="
+          font-size: 13px;
+          color: var(--texto-secundario);
+          line-height: 1.5;
+        ">
+        Fale seu lançamento.
+      </div>
+      <div class="vozAcoes">
+        <button type="button" id="btnGravarVoz" onclick="iniciarVozGemini()">🎙️ Gravar</button>
+        <button type="button" id="btnPararVoz" onclick="pararVozGemini()" disabled>⏹️ Parar</button>
+      </div>
+    </div>
+    <!-- ====================================
+         TIPO
+    ===================================== -->
+
+    <div class="tituloSecao">
+      O que deseja lançar?
+    </div>
+
+
+    <div class="tipos">
+
+      <button
+        type="button"
+        id="btnDespesa"
+        class="btnTipo ativo"
+        onclick="selecionarTipo('Despesa')">
+
+        <span>💸</span>
+
+        Despesa
+
+      </button>
+
+
+      <button
+        type="button"
+        id="btnReceita"
+        class="btnTipo"
+        onclick="selecionarTipo('Receita')">
+
+        <span>💰</span>
+
+        Receita
+
+      </button>
+
+
+      <button
+        type="button"
+        id="btnDivida"
+        class="btnTipo"
+        onclick="selecionarTipo('Divida')">
+
+        <span>💳</span>
+
+        Dívida
+
+      </button>
+
+    </div>
+
+
+    <input
+      type="hidden"
+      id="tipo"
+      value="Despesa">
+
+
+    <!-- ====================================
+         VALOR
+    ===================================== -->
+
+    <div class="campo">
+
+      <label for="valor">
+        Valor
+      </label>
+
+      <div class="valorContainer">
+
+        <span class="valorPrefixo">
+          R$
+        </span>
+
+        <input
+          id="valor"
+          type="number"
+          step="0.01"
+          min="0.01"
+          inputmode="decimal"
+          placeholder="0,00">
+
+      </div>
+
+    </div>
+
+
+    <!-- ====================================
+         CATEGORIA
+    ===================================== -->
+
+    <div
+      id="areaCategoria"
+      class="campo">
+
+      <label for="categoria">
+        Categoria
+      </label>
+
+      <select id="categoria">
+
+        <option value="">
+          Carregando...
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <!-- ====================================
+         DÍVIDA
+    ===================================== -->
+
+    <div id="areaDivida">
+
+      <div class="campo">
+
+        <label for="divida">
+          Dívida
+        </label>
+
+        <select
+          id="divida"
+          onchange="mostrarInfoDivida()">
+
+          <option value="">
+            Carregando...
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div
+        id="infoDivida"
+        class="infoDivida">
+
+
+        <div class="infoSaldo">
+
+          <div class="infoTitulo">
+            Saldo devedor
+          </div>
+
+          <div
+            id="saldoDivida"
+            class="infoValor">
+
+            R$ 0,00
+
+          </div>
+
+        </div>
+
+
+        <div class="infoGrid">
+
+
+          <div>
+
+            <div class="infoTitulo">
+              Parcela
+            </div>
+
+            <div
+              id="parcelaDivida"
+              class="infoItemValor">
+
+              —
+
+            </div>
+
+          </div>
+
+
+          <div>
+
+            <div class="infoTitulo">
+              Restantes
+            </div>
+
+            <div
+              id="restantesDivida"
+              class="infoItemValor">
+
+              —
+
+            </div>
+
+          </div>
+
+
+          <div>
+
+            <div class="infoTitulo">
+              Vencimento
+            </div>
+
+            <div
+              id="vencimentoDivida"
+              class="infoItemValor">
+
+              —
+
+            </div>
+
+          </div>
+
+
+          <div>
+
+            <div class="infoTitulo">
+              Pagas
+            </div>
+
+            <div
+              id="pagasDivida"
+              class="infoItemValor">
+
+              —
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <div
+          id="avisoDivida"
+          class="aviso">
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <!-- ====================================
+         DATA
+    ===================================== -->
+
+    <div class="campo">
+
+      <label for="data">
+        Data
+      </label>
+
+      <input
+        id="data"
+        type="date">
+
+    </div>
+
+
+    <!-- ====================================
+         DESCRIÇÃO
+    ===================================== -->
+
+    <div class="campo">
+
+      <label for="descricao">
+        Descrição
+      </label>
+
+      <input
+        id="descricao"
+        type="text"
+        autocomplete="off"
+        placeholder="Opcional">
+
+    </div>
+
+
+    <!-- ====================================
+         SALVAR
+    ===================================== -->
+
+    <button
+      id="btnSalvar"
+      type="button"
+      onclick="salvar()">
+
+      Salvar despesa
+
+    </button>
+
+
+  </div>
+<!-- ========================================
+     TELA DASHBOARD
+========================================= -->
+
+<div
+  class="card"
+  id="telaDashboard"
+  style="display:none;">
+
+  <div class="tituloSecao">
+    Visão geral
+  </div>
+<div class="dashboardPeriodo">
+
+  <button
+    type="button"
+    class="btnPeriodo"
+    onclick="mudarMesDashboard(-1)">
+    ‹
+  </button>
+
+  <div class="periodoAtual">
+    <div id="dashMes">Julho</div>
+    <span id="dashAno">2026</span>
+  </div>
+
+  <button
+    type="button"
+    class="btnPeriodo"
+    onclick="mudarMesDashboard(1)">
+    ›
+  </button>
+
+</div>
+  <h2 style="
+    font-size: 22px;
+    margin-bottom: 8px;
+  ">
+    Dashboard
+  </h2>
+<div
+    class="loadingTexto"
+    id="loadingDashboard">
+
+Carregando Dashboard...
+
+</div>
+  <div class="dashboardGrid">
+
+  <div class="dashboardCard">
+    <div class="dashboardLabel">Receitas</div>
+    <div class="dashboardValor receita" id="dashReceitas">R$ 0,00</div>
+  </div>
+
+  <div class="dashboardCard">
+    <div class="dashboardLabel">Despesas</div>
+    <div class="dashboardValor despesa" id="dashDespesas">R$ 0,00</div>
+  </div>
+
+  <div class="dashboardCard destaque">
+    <div class="dashboardLabel">Saldo do mês</div>
+    <div class="dashboardValor" id="dashSaldo">R$ 0,00</div>
+  </div>
+
+  <div class="dashboardCard">
+    <div class="dashboardLabel">Saldo devedor</div>
+    <div class="dashboardValor" id="dashSaldoDevedor">R$ 0,00</div>
+  </div>
+
+  <div class="dashboardCard">
+    <div class="dashboardLabel">Parcelas mensais</div>
+    <div class="dashboardValor" id="dashParcelas">R$ 0,00</div>
+  </div>
+
+  <div class="dashboardCard">
+    <div class="dashboardLabel">Dívidas ativas</div>
+    <div class="dashboardValor" id="dashDividas">0</div>
+  </div>
+
+</div>
+<div class="dashboardCharts">
+
+    <div class="chartCard">
+
+        <h3>💸 Despesas por grupo</h3>
+
+        <canvas id="chartDespesasGrupo"></canvas>
+
+    </div>
+
+</div>
+  <div class="dashboardCharts">
+
+    <div class="chartCard">
+
+        <h3>💰 De onde veio minha renda</h3>
+
+        <canvas id="chartReceitasCategoria"></canvas>
+
+    </div>
+
+</div>
+  <div class="dashboardCharts">
+
+    <div class="chartCard">
+
+        <h3>🔥 Top 5 despesas</h3>
+
+        <canvas id="chartTop5"></canvas>
+
+    </div>
+
+</div>
+  <div class="dashboardCharts">
+
+    <div class="chartCard">
+
+        <h3>📈 Evolução mensal</h3>
+
+        <canvas id="chartEvolucao"></canvas>
+
+    </div>
+
+</div>
+</div>
+</main>
+
+
+<!-- ========================================
+     MODAL DE CONFIRMAÇÃO DA DÍVIDA
+========================================= -->
+
+<div
+  id="modalDivida"
+  class="modalFundo">
+
+  <div class="modal">
+
+    <div class="modalIcone">
+      💳
+    </div>
+
+    <h3>
+      Confirmar pagamento
+    </h3>
+
+    <div class="modalTexto">
+      Confira os dados antes de registrar.
+    </div>
+
+
+    <div class="modalResumo">
+
+      <div
+        id="modalNomeDivida"
+        class="modalResumoNome">
+      </div>
+
+      <div
+        id="modalValorDivida"
+        class="modalResumoValor">
+      </div>
+
+      <div
+        id="modalParcelaDivida"
+        class="modalResumoParcela">
+      </div>
+
+    </div>
+
+
+    <div class="modalBotoes">
+
+      <button
+        type="button"
+        class="btnCancelar"
+        onclick="fecharModalDivida()">
+
+        Cancelar
+
+      </button>
+
+
+      <button
+        type="button"
+        class="btnConfirmar"
+        onclick="confirmarPagamentoDivida()">
+
+        Confirmar
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ========================================
+     TOAST
+========================================= -->
+
+<div
+  id="toast"
+  class="toast">
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script>
+
+
+// ==========================================
+// ESTADO
+// ==========================================
+
+let tipoAtual = "Despesa";
+
+let dividasAtivas = [];
+
+let dadosPagamentoPendente = null;
+
+let timerToast = null;
+
+
+// ==========================================
+// TOAST
+// ==========================================
+
+function mostrarToast(
+  mensagem,
+  tipo = ""
+) {
+
+  const toast =
+    document.getElementById("toast");
+
+
+  clearTimeout(timerToast);
+
+
+  toast.className =
+    "toast";
+
+
+  if (tipo) {
+
+    toast.classList.add(tipo);
+
+  }
+
+
+  toast.textContent =
+    mensagem;
+
+
+  requestAnimationFrame(
+    function() {
+
+      toast.classList.add("mostrar");
+
+    }
+  );
+
+
+  timerToast =
+    setTimeout(
+      function() {
+
+        toast.classList.remove("mostrar");
+
+      },
+      3200
+    );
+
+}
+
+
+// ==========================================
+// FORMATAR REAL
+// ==========================================
+
+function formatarReal(valor) {
+
+  return Number(valor || 0)
+    .toLocaleString(
+      "pt-BR",
+      {
+        style: "currency",
+        currency: "BRL"
+      }
+    );
+
+}
+
+
+// ==========================================
+// MODO DE ENTRADA + VOZ COM GEMINI
+// ==========================================
+let mediaRecorderVoz=null, streamVoz=null, partesAudioVoz=[], gravandoVoz=false;
+
+function selecionarEntrada(modo){
+  document.querySelectorAll(".btnEntrada").forEach(b=>b.classList.remove("ativo"));
+  if(modo==="manual"){
+    document.getElementById("modoManual").classList.add("ativo");
+    document.getElementById("areaVoz").style.display="none";
+    return;
+  }
+  if(modo==="voz"){
+    document.getElementById("modoVoz").classList.add("ativo");
+    document.getElementById("areaVoz").style.display="block";
+    document.getElementById("statusVoz").textContent="🎙️ Pronto para gravar";
+    document.getElementById("transcricaoVoz").textContent='Toque em "Gravar", fale o lançamento e depois toque em "Parar".';
+    return;
+  }
+  document.getElementById("modoManual").classList.add("ativo");
+  mostrarToast("📷 Lançamento por foto será implementado em seguida.","");
+}
+
+async function iniciarVozGemini(){
+  if(gravandoVoz)return;
+  try{
+    streamVoz=await navigator.mediaDevices.getUserMedia({audio:true});
+    partesAudioVoz=[];
+    let opts={};
+    if(MediaRecorder.isTypeSupported("audio/webm;codecs=opus"))opts.mimeType="audio/webm;codecs=opus";
+    mediaRecorderVoz=new MediaRecorder(streamVoz,opts);
+    mediaRecorderVoz.ondataavailable=e=>{if(e.data&&e.data.size)partesAudioVoz.push(e.data)};
+    mediaRecorderVoz.onstop=async()=>{
+      const mime=mediaRecorderVoz.mimeType||"audio/webm";
+      const blob=new Blob(partesAudioVoz,{type:mime});
+      if(streamVoz) streamVoz.getTracks().forEach(t=>t.stop());
+      gravandoVoz=false; atualizarBotoesVoz(false);
+      await enviarAudioGemini(blob,mime);
+    };
+    mediaRecorderVoz.start();
+    gravandoVoz=true; atualizarBotoesVoz(true);
+    document.getElementById("statusVoz").textContent="🎙️ Ouvindo...";
+    document.getElementById("transcricaoVoz").textContent="Fale seu lançamento e toque em Parar.";
+  }catch(e){
+    mostrarToast(e.name==="NotAllowedError"?"Permissão do microfone não concedida.":"Não foi possível acessar o microfone.","erro");
+  }
+}
+
+function pararVozGemini(){
+  if(!mediaRecorderVoz||!gravandoVoz)return;
+  document.getElementById("statusVoz").textContent="⏳ Processando...";
+  document.getElementById("transcricaoVoz").textContent="Enviando o áudio para o Gemini.";
+  mediaRecorderVoz.stop();
+}
+
+function atualizarBotoesVoz(on){
+  document.getElementById("btnGravarVoz").disabled=on;
+  document.getElementById("btnPararVoz").disabled=!on;
+  document.getElementById("textoModoVoz").textContent=on?"Ouvindo...":"Voz";
+}
+
+function blobParaBase64(blob){
+  return new Promise((resolve,reject)=>{
+    const r=new FileReader();
+    r.onloadend=()=>resolve(String(r.result||"").split(",")[1]||"");
+    r.onerror=reject; r.readAsDataURL(blob);
+  });
+}
+function interpretarTranscricaoLocal(texto){
+  const original = String(texto || "").trim();
+  const t = original.toLowerCase();
+
+  // TIPO
+  let tipo = "Despesa";
+
+  if (
+    t.includes("recebi") ||
+    t.includes("recebeu") ||
+    t.includes("ganhei") ||
+    t.includes("entrou") ||
+    t.includes("vendi")
+  ){
+    tipo = "Receita";
+  }
+
+  // VALOR
+  let valor = null;
+
+  const matchValor = t.match(
+    /(?:r\$\s*)?(\d+(?:[.,]\d{1,2})?)\s*(?:reais|real)?/
+  );
+
+  if(matchValor){
+    valor = Number(matchValor[1].replace(",", "."));
+  }
+
+  // DATA
+  const hoje = new Date();
+  let data = new Date(hoje);
+
+  if(t.includes("anteontem")){
+    data.setDate(data.getDate() - 2);
+  }
+  else if(t.includes("ontem")){
+    data.setDate(data.getDate() - 1);
+  }
+
+  const dataISO =
+    data.getFullYear() + "-" +
+    String(data.getMonth()+1).padStart(2,"0") + "-" +
+    String(data.getDate()).padStart(2,"0");
+
+  // Regras iniciais de categoria/descrição
+  let categoria = "";
+  let descricao = "";
+
+  if(tipo === "Receita"){
+
+    if(
+      t.includes("casamento") ||
+      t.includes("aniversário") ||
+      t.includes("aniversario") ||
+      t.includes("inauguração") ||
+      t.includes("inauguracao") ||
+      t.includes("ensaio") ||
+      t.includes("fotografia") ||
+      t.includes("filmagem")
+    ){
+      categoria = "Freelancer";
+
+      if(t.includes("casamento")){
+        descricao = "Casamento";
+      }
+      else if(t.includes("inauguração") || t.includes("inauguracao")){
+        descricao = "Inauguração";
+      }
+      else if(t.includes("aniversário") || t.includes("aniversario")){
+        descricao = "Aniversário";
+      }
+      else if(t.includes("ensaio")){
+        descricao = "Ensaio fotográfico";
+      }
+    }
+
+    if(t.includes("salário") || t.includes("salario")){
+      categoria = "Salário";
+    }
+
+    if(t.includes("loja")){
+      categoria = "Loja";
+    }
+
+  }else{
+
+    if(t.includes("uber")){
+      categoria = "Uber";
+    }
+
+    if(t.includes("internet")){
+      categoria = "Internet";
+    }
+  }
+
+  return {
+    tipo,
+    valor,
+    categoria,
+    data: dataISO,
+    descricao
+  };
+}
+async function enviarAudioGemini(blob,mimeType){
+  try{
+
+    document.getElementById("statusVoz").textContent="⏳ Processando...";
+    document.getElementById("transcricaoVoz").textContent=
+      "Entendendo o lançamento.";
+
+    // Busca as categorias REAIS da planilha
+   const [categoriasDespesa, categoriasReceita, dividas] = await Promise.all([
+  chamarAppsScript("getCategorias", { tipo: "Despesa" }),
+  chamarAppsScript("getCategorias", { tipo: "Receita" }),
+  chamarAppsScript("getDividasAtivas")
+]);
+
+    // Precisamos enviar áudio + categorias juntos.
+    // FormData permite mandar o Blob sem converter novamente para Base64.
+    const form = new FormData();
+
+    form.append(
+      "audio",
+      blob,
+      "audio.webm"
+    );
+
+    form.append(
+      "categoriasDespesa",
+      JSON.stringify(categoriasDespesa || [])
+    );
+
+    form.append(
+      "categoriasReceita",
+      JSON.stringify(categoriasReceita || [])
+    );
+     form.append(
+  "dividas",
+  JSON.stringify(
+    Array.isArray(dividas)
+      ? dividas.map(d => ({
+          id: d.id,
+          nome: d.nome
+        }))
+      : []
+  )
+);
+
+    const http = await fetch(
+      "https://finance-voz.sy-jp157.workers.dev/",
+      {
+        method:"POST",
+        body:form
+      }
+    );
+
+    const resposta = await http.json();
+
+    if(!http.ok || resposta.sucesso===false){
+
+      const detalheErro =
+        typeof resposta.erro === "string"
+          ? resposta.erro
+          : JSON.stringify(resposta.erro || resposta);
+
+      throw new Error(`HTTP ${http.status}: ${detalheErro}`);
+    }
+
+    const transcricao =
+  String(resposta.transcricao || "").trim();
+
+if(!transcricao){
+  throw new Error(
+    "O áudio foi recebido, mas nenhuma fala foi reconhecida."
+  );
+}
+
+if(!resposta.dados){
+  throw new Error(
+    "A fala foi reconhecida, mas o lançamento não foi interpretado."
+  );
+}
+
+const dados = resposta.dados;
+
+await preencherFormularioComVoz(dados);
+
+    document.getElementById("statusVoz").textContent=
+      "✅ Lançamento entendido";
+
+    document.getElementById("transcricaoVoz").textContent=
+      transcricao;
+
+    mostrarToast(
+      "Campos preenchidos. Confira antes de salvar.",
+      "sucesso"
+    );
+
+  }catch(e){
+
+    document.getElementById("statusVoz").textContent=
+      "Não deu certo";
+
+    document.getElementById("transcricaoVoz").textContent=
+      e.message || "Não consegui reconhecer o áudio.";
+
+    mostrarToast(
+      "Erro ao processar a voz.",
+      "erro"
+    );
+  }
+}
+
+function normalizarRespostaGemini(v){
+  let x=v;
+  for(let i=0;i<4&&typeof x==="string";i++){
+    let s=x.trim().replace(/^```(?:json)?\s*/i,"").replace(/\s*```$/i,"").trim();
+    x=JSON.parse(s);
+  }
+  if(x&&typeof x==="object"&&x.resposta!==undefined)return normalizarRespostaGemini(x.resposta);
+  if(!x||typeof x!=="object")throw new Error("Resposta do Gemini inválida.");
+  return x;
+}
+
+function normalizarTipoVoz(t){
+  t=String(t||"").toLowerCase();
+  if(t.includes("receita"))return "Receita";
+  if(t.includes("divida")||t.includes("dívida"))return "Divida";
+  return "Despesa";
+}
+
+function normalizarValorVoz(v){
+  if(typeof v==="number"&&Number.isFinite(v))return v.toFixed(2);
+  if(typeof v!=="string")return null;
+  let s=v.replace(/[R$\s]/g,"");
+  if(s.includes(",")&&s.includes("."))s=s.replace(/\./g,"").replace(",",".");
+  else s=s.replace(",",".");
+  const n=Number(s); return Number.isFinite(n)?n.toFixed(2):null;
+}
+
+async function preencherFormularioComVoz(d){
+console.log("DADOS DA VOZ:", d);
+  const tipo = normalizarTipoVoz(d.tipo);
+
+  tipoAtual = tipo;
+
+  document.getElementById("tipo").value = tipo;
+
+  document.querySelectorAll(".btnTipo").forEach(
+    b => b.classList.remove("ativo")
+  );
+
+  document.getElementById("btnDespesa")
+    .classList.toggle("ativo", tipo==="Despesa");
+
+  document.getElementById("btnReceita")
+    .classList.toggle("ativo", tipo==="Receita");
+
+  document.getElementById("btnDivida")
+    .classList.toggle("ativo", tipo==="Divida");
+
+
+  // ==========================
+  // ALTERNA AS ÁREAS
+  // ==========================
+
+  if(tipo==="Divida"){
+
+    document.getElementById("areaCategoria").style.display="none";
+    document.getElementById("areaDivida").style.display="block";
+    document.getElementById("infoDivida").style.display="none";
+
+  }else{
+
+    document.getElementById("areaCategoria").style.display="block";
+    document.getElementById("areaDivida").style.display="none";
+    document.getElementById("infoDivida").style.display="none";
+
+  }
+
+
+  // ==========================
+  // VALOR
+  // ==========================
+
+  const v = normalizarValorVoz(d.valor);
+
+  if(v!==null){
+    document.getElementById("valor").value=v;
+  }
+
+
+  // ==========================
+  // DATA
+  // ==========================
+
+  if(
+    d.data &&
+    /^\d{4}-\d{2}-\d{2}$/.test(String(d.data))
+  ){
+    document.getElementById("data").value=d.data;
+  }
+
+
+  // ==========================
+  // DESCRIÇÃO
+  // ==========================
+
+  if(d.descricao!=null){
+    document.getElementById("descricao").value=
+      String(d.descricao);
+  }
+
+
+  // ==========================
+  // DÍVIDA
+  // ==========================
+
+  if(tipo==="Divida"){
+
+    // UMA única carga das dívidas
+    await carregarDividas();
+
+    if(d.divida){
+
+      const nomeProcurado =
+        String(d.divida)
+          .trim()
+          .toLowerCase();
+
+      const dividaEncontrada =
+        dividasAtivas.find(
+          item =>
+            String(item.nome || "")
+              .trim()
+              .toLowerCase() === nomeProcurado
+        );
+
+      if(dividaEncontrada){
+
+  const selectDivida =
+    document.getElementById("divida");
+
+  selectDivida.value =
+    dividaEncontrada.id;
+
+  // Executa a lógica normal da dívida.
+  mostrarInfoDivida();
+
+  // Se NÃO possui parcelas fixas,
+  // mantém o valor que foi entendido pela voz.
+  const campoValor =
+  document.getElementById("valor");
+
+// mostrarInfoDivida() já decidiu:
+// parcela fixa -> readOnly = true
+// pagamento livre -> readOnly = false
+if(!campoValor.readOnly){
+
+  const valorVoz =
+    normalizarValorVoz(d.valor);
+
+  if(valorVoz !== null){
+    campoValor.value = valorVoz;
+  }
+
+}
+
+}
+    }
+
+  }
+
+  // ==========================
+  // RECEITA / DESPESA
+  // ==========================
+
+  else{
+
+    // UMA única carga das categorias
+    await carregarCategorias();
+
+    if(d.categoria){
+      selecionarCategoriaVoz(
+        String(d.categoria)
+      );
+    }
+
+  }
+
+
+  atualizarBotaoSalvar();
+}
+function selecionarCategoriaVoz(categoria){
+  const select=document.getElementById("categoria");
+  const norm=s=>String(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase();
+  const alvo=norm(categoria);
+  const aplicar=()=>{
+    const op=[...select.options].find(o=>norm(o.textContent)===alvo);
+    if(op){select.value=op.value;return true} return false;
+  };
+  if(!aplicar()){setTimeout(aplicar,500);setTimeout(aplicar,1200);setTimeout(aplicar,2200)}
+}
+
+function resumoLancamentoVoz(d){
+  const p=[];
+  if(d.tipo)p.push(String(d.tipo));
+  const v=normalizarValorVoz(d.valor);
+  if(v!==null)p.push(Number(v).toLocaleString("pt-BR",{style:"currency",currency:"BRL"}));
+  if(d.categoria)p.push(String(d.categoria));
+  return p.join(" • ")||"Campos preenchidos pelo Gemini.";
+}
+
+// ==========================================
+// ATUALIZAR BOTÃO SALVAR
+// ==========================================
+
+function atualizarBotaoSalvar() {
+
+  const botao =
+    document.getElementById("btnSalvar");
+
+
+  if (tipoAtual === "Receita") {
+
+    botao.textContent =
+      "Salvar receita";
+
+    return;
+
+  }
+
+
+  if (tipoAtual === "Divida") {
+
+    botao.textContent =
+      "Registrar pagamento";
+
+    return;
+
+  }
+
+
+  botao.textContent =
+    "Salvar despesa";
+
+}
+
+
+// ==========================================
+// SELECIONAR TIPO
+// ==========================================
+
+function selecionarTipo(tipo) {
+
+  tipoAtual =
+    tipo;
+
+
+  document
+    .getElementById("tipo")
+    .value =
+      tipo;
+
+
+  document
+    .querySelectorAll(".btnTipo")
+    .forEach(
+      function(botao) {
+
+        botao.classList.remove("ativo");
+
+      }
+    );
+
+
+  if (tipo === "Despesa") {
+
+    document
+      .getElementById("btnDespesa")
+      .classList.add("ativo");
+
+  }
+
+
+  if (tipo === "Receita") {
+
+    document
+      .getElementById("btnReceita")
+      .classList.add("ativo");
+
+  }
+
+
+  if (tipo === "Divida") {
+
+    document
+      .getElementById("btnDivida")
+      .classList.add("ativo");
+
+  }
+
+
+  atualizarBotaoSalvar();
+
+
+  const campoValor =
+    document.getElementById("valor");
+
+
+  campoValor.readOnly = false;
+  campoValor.value = "";
+
+
+  if (tipo === "Divida") {
+
+    document
+      .getElementById("areaCategoria")
+      .style.display =
+        "none";
+
+
+    document
+      .getElementById("areaDivida")
+      .style.display =
+        "block";
+
+
+    carregarDividas();
+
+  }
+
+
+  else {
+
+    document
+      .getElementById("areaCategoria")
+      .style.display =
+        "block";
+
+
+    document
+      .getElementById("areaDivida")
+      .style.display =
+        "none";
+
+
+    document
+      .getElementById("infoDivida")
+      .style.display =
+        "none";
+
+
+    carregarCategorias();
+
+  }
+
+}
+
+
+
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYzE2qOKiywHCOM4jhtErGkF_mFFVc8AXS95wu-PTj4SAIUblUMzJe5KTAAUb_X5eHHQ/exec";
+
+async function chamarAppsScript(acao, dados = {}) {
+  const resposta = await fetch(APPS_SCRIPT_URL, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify({ acao, dados })
+  });
+
+  const texto = await resposta.text();
+  let json;
+
+  try {
+    json = JSON.parse(texto);
+  } catch (_) {
+    throw new Error("O Apps Script não retornou JSON válido.");
+  }
+
+  if (!resposta.ok || !json.sucesso) {
+    throw new Error(json.erro || ("Erro HTTP " + resposta.status));
+  }
+
+  return json.resultado;
+}
+
+// ==========================================
+// CATEGORIAS
+// ==========================================
+
+async function carregarCategorias() {
+  const select = document.getElementById("categoria");
+  select.innerHTML = '<option value="">Carregando...</option>';
+
+  try {
+    const lista = await chamarAppsScript("getCategorias", { tipo: tipoAtual });
+    select.innerHTML = '<option value="">Selecione...</option>';
+
+    if (!Array.isArray(lista) || lista.length === 0) {
+      select.innerHTML = '<option value="">Nenhuma categoria cadastrada</option>';
+      return;
+    }
+
+    lista.forEach(function(item) {
+      const option = document.createElement("option");
+      option.value = item;
+      option.textContent = item;
+      select.appendChild(option);
+    });
+  } catch (erro) {
+    select.innerHTML = '<option value="">Erro ao carregar</option>';
+    mostrarToast("Erro ao carregar categorias: " + erro.message, "erro");
+  }
+}
+
+// ==========================================
+// CARREGAR DÍVIDAS
+// ==========================================
+
+async function carregarDividas() {
+  const select = document.getElementById("divida");
+  select.innerHTML = '<option value="">Carregando...</option>';
+  document.getElementById("infoDivida").style.display = "none";
+
+  try {
+    const lista = await chamarAppsScript("getDividasAtivas");
+    dividasAtivas = Array.isArray(lista) ? lista : [];
+    select.innerHTML = '<option value="">Selecione...</option>';
+
+    if (dividasAtivas.length === 0) {
+      select.innerHTML = '<option value="">Nenhuma dívida ativa</option>';
+      return;
+    }
+
+    dividasAtivas.forEach(function(divida) {
+      const option = document.createElement("option");
+      option.value = divida.id;
+      option.textContent = divida.nome;
+      select.appendChild(option);
+    });
+  } catch (erro) {
+    select.innerHTML = '<option value="">Erro ao carregar</option>';
+    mostrarToast("Erro ao carregar dívidas: " + erro.message, "erro");
+  }
+}
+
+// ==========================================
+// PEGAR DÍVIDA SELECIONADA
+// ==========================================
+
+function getDividaSelecionada() {
+
+  const id =
+    document
+      .getElementById("divida")
+      .value;
+
+
+  return dividasAtivas.find(
+    function(divida) {
+
+      return (
+        String(divida.id) ===
+        String(id)
+      );
+
+    }
+  );
+
+}
+
+
+// ==========================================
+// MOSTRAR DÍVIDA
+// ==========================================
+
+function mostrarInfoDivida() {
+
+  const divida =
+    getDividaSelecionada();
+
+
+  const painel =
+    document.getElementById(
+      "infoDivida"
+    );
+
+
+  const campoValor =
+    document.getElementById(
+      "valor"
+    );
+
+
+  if (!divida) {
+
+    painel.style.display =
+      "none";
+
+
+    campoValor.value =
+      "";
+
+
+    campoValor.readOnly =
+      false;
+
+
+    return;
+
+  }
+
+
+  painel.style.display =
+    "block";
+
+
+  document
+    .getElementById("saldoDivida")
+    .textContent =
+      formatarReal(divida.saldo);
+
+
+  if (
+    Number(divida.totalParcelas) > 0
+  ) {
+
+    document
+      .getElementById("parcelaDivida")
+      .textContent =
+        formatarReal(
+          divida.valorParcela
+        );
+
+
+    document
+      .getElementById("restantesDivida")
+      .textContent =
+        divida.parcelasRestantes +
+        " de " +
+        divida.totalParcelas;
+
+
+    document
+      .getElementById("pagasDivida")
+      .textContent =
+        divida.parcelasPagas +
+        " de " +
+        divida.totalParcelas;
+
+
+    document
+      .getElementById("vencimentoDivida")
+      .textContent =
+        divida.vencimento
+          ? "Dia " +
+            divida.vencimento
+          : "—";
+
+
+    document
+      .getElementById("avisoDivida")
+      .textContent =
+        "Próxima parcela: " +
+        (
+          Number(
+            divida.parcelasPagas
+          ) + 1
+        ) +
+        "/" +
+        divida.totalParcelas;
+
+
+    const ultimaParcela =
+      Number(
+        divida.parcelasRestantes
+      ) === 1;
+
+
+    const valorPagamento =
+      ultimaParcela
+        ? Number(divida.saldo)
+        : Number(
+            divida.valorParcela
+          );
+
+
+    campoValor.value =
+      valorPagamento.toFixed(2);
+
+
+    campoValor.readOnly =
+      true;
+
+  }
+
+
+  else {
+
+    document
+      .getElementById("parcelaDivida")
+      .textContent =
+        "Sem valor fixo";
+
+
+    document
+      .getElementById("restantesDivida")
+      .textContent =
+        "—";
+
+
+    document
+      .getElementById("pagasDivida")
+      .textContent =
+        "—";
+
+
+    document
+      .getElementById("vencimentoDivida")
+      .textContent =
+        divida.vencimento
+          ? "Dia " +
+            divida.vencimento
+          : "Sem vencimento";
+
+
+    document
+      .getElementById("avisoDivida")
+      .textContent =
+        "Informe o valor que foi pago.";
+
+
+    campoValor.value =
+      "";
+
+
+    campoValor.readOnly =
+      false;
+
+  }
+
+}
+
+
+// ==========================================
+// DATA DE HOJE
+// ==========================================
+
+function definirDataHoje() {
+
+  const agora =
+    new Date();
+
+
+  const ano =
+    agora.getFullYear();
+
+
+  const mes =
+    String(
+      agora.getMonth() + 1
+    ).padStart(2, "0");
+
+
+  const dia =
+    String(
+      agora.getDate()
+    ).padStart(2, "0");
+
+
+  document
+    .getElementById("data")
+    .value =
+      ano +
+      "-" +
+      mes +
+      "-" +
+      dia;
+
+}
+
+
+// ==========================================
+// LIMPAR FORMULÁRIO
+// ==========================================
+
+function limparFormulario() {
+
+  document
+    .getElementById("valor")
+    .value =
+      "";
+
+
+  document
+    .getElementById("descricao")
+    .value =
+      "";
+
+
+  definirDataHoje();
+
+}
+
+
+// ==========================================
+// SALVAR
+// ==========================================
+
+function salvar() {
+
+  if (
+    tipoAtual === "Divida"
+  ) {
+
+    prepararPagamentoDivida();
+
+    return;
+
+  }
+
+
+  salvarLancamentoNormal();
+
+}
+
+
+// ==========================================
+// RECEITA / DESPESA
+// ==========================================
+
+async function salvarLancamentoNormal() {
+  const botao = document.getElementById("btnSalvar");
+
+  const dados = {
+    tipo: tipoAtual,
+    categoria: document.getElementById("categoria").value,
+    valor: document.getElementById("valor").value,
+    data: document.getElementById("data").value,
+    descricao: document.getElementById("descricao").value.trim()
+  };
+
+  if (dados.valor === "" || Number(dados.valor) <= 0) {
+    mostrarToast("Informe um valor válido.", "erro");
+    return;
+  }
+  if (!dados.categoria) {
+    mostrarToast("Selecione uma categoria.", "erro");
+    return;
+  }
+  if (!dados.data) {
+    mostrarToast("Informe a data.", "erro");
+    return;
+  }
+
+  botao.disabled = true;
+  botao.textContent = "Salvando...";
+
+  try {
+    await chamarAppsScript("salvarLancamento", dados);
+    limparFormulario();
+    mostrarToast(
+      tipoAtual === "Receita"
+        ? "Receita salva com sucesso!"
+        : "Despesa salva com sucesso!",
+      "sucesso"
+    );
+  } catch (erro) {
+    mostrarToast("Erro ao salvar: " + erro.message, "erro");
+  } finally {
+    botao.disabled = false;
+    atualizarBotaoSalvar();
+  }
+}
+
+// ==========================================
+// PREPARAR PAGAMENTO DA DÍVIDA
+// ==========================================
+
+function prepararPagamentoDivida() {
+
+  const divida =
+    getDividaSelecionada();
+
+
+  if (!divida) {
+
+    mostrarToast(
+      "Selecione uma dívida.",
+      "erro"
+    );
+
+    return;
+
+  }
+
+
+  const valor =
+    Number(
+      document
+        .getElementById("valor")
+        .value
+    );
+
+
+  if (
+    !Number.isFinite(valor) ||
+    valor <= 0
+  ) {
+
+    mostrarToast(
+      "Informe um valor válido.",
+      "erro"
+    );
+
+    return;
+
+  }
+
+
+  if (
+    valor >
+    Number(divida.saldo) + 0.009
+  ) {
+
+    mostrarToast(
+      "O valor é maior que o saldo devedor.",
+      "erro"
+    );
+
+    return;
+
+  }
+
+
+  const data =
+    document
+      .getElementById("data")
+      .value;
+
+
+  if (!data) {
+
+    mostrarToast(
+      "Informe a data.",
+      "erro"
+    );
+
+    return;
+
+  }
+
+
+  dadosPagamentoPendente = {
+
+    idDivida:
+      divida.id,
+
+    valor:
+      valor,
+
+    data:
+      data,
+
+    descricao:
+      document
+        .getElementById("descricao")
+        .value
+        .trim()
+
+  };
+
+
+  document
+    .getElementById("modalNomeDivida")
+    .textContent =
+      divida.nome;
+
+
+  document
+    .getElementById("modalValorDivida")
+    .textContent =
+      formatarReal(valor);
+
+
+  const campoParcela =
+    document.getElementById(
+      "modalParcelaDivida"
+    );
+
+
+  if (
+    Number(divida.totalParcelas) > 0
+  ) {
+
+    campoParcela.textContent =
+      "Parcela " +
+      (
+        Number(
+          divida.parcelasPagas
+        ) + 1
+      ) +
+      " de " +
+      divida.totalParcelas;
+
+  }
+
+
+  else {
+
+    campoParcela.textContent =
+      "Pagamento da dívida";
+
+  }
+
+
+  document
+    .getElementById("modalDivida")
+    .classList.add("aberto");
+
+}
+
+
+// ==========================================
+// FECHAR MODAL
+// ==========================================
+
+function fecharModalDivida() {
+
+  document
+    .getElementById("modalDivida")
+    .classList.remove("aberto");
+
+
+  dadosPagamentoPendente =
+    null;
+
+}
+
+
+// ==========================================
+// CONFIRMAR PAGAMENTO
+// ==========================================
+
+async function confirmarPagamentoDivida() {
+  if (!dadosPagamentoPendente) return;
+
+  const dados = dadosPagamentoPendente;
+  dadosPagamentoPendente = null;
+  document.getElementById("modalDivida").classList.remove("aberto");
+
+  const botao = document.getElementById("btnSalvar");
+  botao.disabled = true;
+  botao.textContent = "Registrando...";
+
+  try {
+    await chamarAppsScript("salvarPagamentoDivida", dados);
+    limparFormulario();
+    mostrarToast("Pagamento registrado com sucesso!", "sucesso");
+    carregarDividas();
+  } catch (erro) {
+    mostrarToast("Erro ao registrar pagamento: " + erro.message, "erro");
+  } finally {
+    botao.disabled = false;
+    atualizarBotaoSalvar();
+  }
+}
+
+// ==========================================
+// FECHAR MODAL CLICANDO FORA
+// ==========================================
+
+document
+  .getElementById("modalDivida")
+  .addEventListener(
+    "click",
+    function(evento) {
+
+      if (
+        evento.target === this
+      ) {
+
+        fecharModalDivida();
+
+      }
+
+    }
+  );
+
+
+// ==========================================
+// INICIAR
+// ==========================================
+
+window.onload =
+  function() {
+
+    definirDataHoje();
+
+    selecionarTipo(
+      "Despesa"
+    );
+
+  };
+// ==========================================
+// NAVEGAÇÃO ENTRE TELAS
+// ==========================================
+
+function abrirTela(tela) {
+
+  const lancamentos =
+    document.getElementById("telaLancamentos");
+
+  const dashboard =
+    document.getElementById("telaDashboard");
+
+  const navLancamentos =
+    document.getElementById("navLancamentos");
+
+  const navDashboard =
+    document.getElementById("navDashboard");
+
+
+  if (tela === "dashboard") {
+
+    lancamentos.style.display = "none";
+    dashboard.style.display = "block";
+
+    navLancamentos.classList.remove("ativo");
+    navDashboard.classList.add("ativo");
+    carregarDashboard();
+
+  } else {
+
+    dashboard.style.display = "none";
+    lancamentos.style.display = "block";
+
+    navDashboard.classList.remove("ativo");
+    navLancamentos.classList.add("ativo");
+
+  }
+
+}
+  // ==========================================
+// CARREGAR DASHBOARD
+// ==========================================
+
+let dataDashboard = new Date();
+
+const nomesMesesDashboard = [
+  "Janeiro",
+  "Fevereiro",
+  "Março",
+  "Abril",
+  "Maio",
+  "Junho",
+  "Julho",
+  "Agosto",
+  "Setembro",
+  "Outubro",
+  "Novembro",
+  "Dezembro"
+];
+
+
+function mudarMesDashboard(direcao) {
+
+  dataDashboard.setMonth(
+    dataDashboard.getMonth() + direcao
+  );
+
+  carregarDashboard();
+}
+
+
+async function carregarDashboard() {
+  const grid =
+document.querySelector(".dashboardGrid");
+
+const loading =
+document.getElementById("loadingDashboard");
+
+grid.classList.add("dashboardLoading");
+
+loading.classList.add("ativo");
+
+  const mes =
+    dataDashboard.getMonth() + 1;
+
+  const ano =
+    dataDashboard.getFullYear();
+
+
+  document.getElementById("dashMes").textContent =
+    nomesMesesDashboard[mes - 1];
+
+  document.getElementById("dashAno").textContent =
+    ano;
+
+
+  try {
+
+    const dados =
+      await chamarAppsScript(
+        "getDashboard",
+        {
+          mes: mes,
+          ano: ano
+        }
+      );
+console.log(dados);
+console.log(dados.despesasGrupo);
+
+    document.getElementById("dashReceitas").textContent =
+      formatarReal(dados.receitas);
+
+    document.getElementById("dashDespesas").textContent =
+      formatarReal(dados.despesas);
+
+    document.getElementById("dashSaldo").textContent =
+      formatarReal(dados.saldo);
+
+    document.getElementById("dashSaldoDevedor").textContent =
+      formatarReal(dados.saldoDevedor);
+
+    document.getElementById("dashParcelas").textContent =
+      formatarReal(dados.parcelasMensais);
+
+    document.getElementById("dashDividas").textContent =
+      Number(dados.dividasAtivas || 0);
+   
+    desenharGraficoDespesasGrupo(
+    dados.despesasGrupo
+);
+
+desenharGraficoReceitasCategoria(
+    dados.receitasCategoria
+);
+
+desenharGraficoTop5(
+    dados.top5Despesas
+);
+
+desenharGraficoEvolucao(
+    dados.evolucaoMensal
+);
+    
+    grid.classList.remove("dashboardLoading");
+    
+
+loading.classList.remove("ativo");
+    const receitas = Number(dados.receitas || 0);
+const saldo = Number(dados.saldo || 0);
+
+
+  } catch (erro) {
+    grid.classList.remove("dashboardLoading");
+
+loading.classList.remove("ativo");
+
+    mostrarToast(
+      "Erro ao carregar Dashboard: " +
+      erro.message,
+      "erro"
+    );
+
+  }
+
+}// =====================================
+// GRÁFICO 1 - DESPESAS POR GRUPO
+// =====================================
+
+function desenharGraficoDespesasGrupo(lista){
+
+  const canvas = document.getElementById("chartDespesasGrupo");
+
+  if(!canvas) return;
+
+  const existente = Chart.getChart(canvas);
+
+  if(existente){
+    existente.destroy();
+  }
+
+  new Chart(canvas,{
+
+    type:"doughnut",
+
+    data:{
+
+      labels: lista.map(item => item.grupo),
+
+      datasets:[{
+
+        label:"Despesas",
+
+        data: lista.map(item => item.valor),
+
+        borderWidth:2,
+
+        borderRadius:4
+
+      }]
+
+    },
+
+    plugins:[ChartDataLabels],
+
+    options:{
+
+      responsive:true,
+
+      maintainAspectRatio:false,
+
+      cutout:"55%",
+
+      plugins:{
+
+        legend:{
+
+          display:true,
+
+          position:"bottom",
+
+          labels:{
+
+            boxWidth:14,
+
+            padding:12
+
+          }
+
+        },
+
+        datalabels:{
+
+  color:"#ffffff",
+
+  font:{
+
+    weight:"bold",
+
+    size:12
+
+  },
+
+  formatter:function(valor){
+
+    return valor.toLocaleString("pt-BR",{
+
+      style:"currency",
+
+      currency:"BRL",
+
+      minimumFractionDigits:0,
+
+      maximumFractionDigits:0
+
+    });
+
+  }
+
+}
+
+      }
+
+    }
+
+  });
+
+}
+
+
+
+// =====================================
+// GRÁFICO 2 - RECEITAS POR CATEGORIA
+// =====================================
+
+function desenharGraficoReceitasCategoria(lista){
+
+  const canvas = document.getElementById("chartReceitasCategoria");
+
+  if(!canvas) return;
+
+  const existente = Chart.getChart(canvas);
+
+  if(existente){
+    existente.destroy();
+  }
+
+  new Chart(canvas,{
+
+    type:"doughnut",
+
+    data:{
+
+      labels: lista.map(item => item.categoria),
+
+      datasets:[{
+
+        label:"Receitas",
+
+        data: lista.map(item => item.valor),
+
+        borderWidth:2,
+
+        borderRadius:4
+
+      }]
+
+    },
+
+    plugins:[ChartDataLabels],
+
+    options:{
+
+      responsive:true,
+
+      maintainAspectRatio:false,
+
+      cutout:"55%",
+
+      plugins:{
+
+        legend:{
+
+          display:true,
+
+          position:"bottom",
+
+          labels:{
+
+            boxWidth:14,
+
+            padding:12
+
+          }
+
+        },
+
+        datalabels:{
+
+          color:"#ffffff",
+
+          font:{
+
+            weight:"bold",
+
+            size:12
+
+          },
+
+          formatter:function(valor){
+
+            return valor.toLocaleString("pt-BR",{
+
+              style:"currency",
+
+              currency:"BRL",
+
+              minimumFractionDigits:0,
+
+              maximumFractionDigits:0
+
+            });
+
+          }
+
+        }
+
+      }
+
+    }
+
+  });
+
+}
+
+
+
+// =====================================
+// GRÁFICO 3 - TOP 5 DESPESAS
+// =====================================
+
+function desenharGraficoTop5(lista){
+
+  const canvas = document.getElementById("chartTop5");
+
+  if(!canvas) return;
+
+  const existente = Chart.getChart(canvas);
+
+  if(existente){
+    existente.destroy();
+  }
+
+  new Chart(canvas,{
+
+    type:"bar",
+
+    data:{
+
+      labels: lista.map(item => item.categoria),
+
+      datasets:[{
+
+        label:"Top 5",
+
+        data: lista.map(item => item.valor),
+
+        borderWidth:0,
+
+        borderRadius:8
+
+      }]
+
+    },
+
+    options:{
+
+      indexAxis:"y",
+
+      responsive:true,
+
+      maintainAspectRatio:false,
+
+      plugins:{
+        legend:{
+          display:false
+        }
+      }
+
+    }
+
+  });
+
+}
+
+
+
+// =====================================
+// GRÁFICO 4 - EVOLUÇÃO MENSAL
+// =====================================
+
+function desenharGraficoEvolucao(lista){
+
+  const canvas = document.getElementById("chartEvolucao");
+
+  if(!canvas) return;
+
+  const existente = Chart.getChart(canvas);
+
+  if(existente){
+    existente.destroy();
+  }
+
+  new Chart(canvas,{
+
+    type:"line",
+
+    data:{
+
+      labels: lista.map(item => item.mes),
+
+      datasets:[
+
+        {
+
+          label:"Receitas",
+
+          data: lista.map(item => item.receitas)
+
+        },
+
+        {
+
+          label:"Despesas",
+
+          data: lista.map(item => item.despesas)
+
+        },
+
+        {
+
+          label:"Saldo",
+
+          data: lista.map(item => item.saldo)
+
+        }
+
+      ]
+
+    },
+
+    options:{
+
+  responsive:true,
+
+  maintainAspectRatio:false,
+
+  interaction:{
+    mode:"index",
+    intersect:false
+  },
+
+  plugins:{
+    legend:{
+      position:"top"
+    }
+  },
+
+  scales:{
+
+    x:{
+      grid:{
+        display:false
+      }
+    },
+
+    y:{
+      beginAtZero:true
+    }
+
+  }
+
+}
+
+  });
+
+}
+
+
+
+</script>
+
+</body>
+
+</html>
